@@ -8,7 +8,13 @@ let currentMonsterHealth = chosenMaxLife;
 let currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;
 
+adjustHealthBars(chosenMaxLife);
 
+function reset() {
+currentMonsterHealth = chosenMaxLife;
+currentPlayerHealth = chosenMaxLife;
+resetGame(chosenMaxLife);
+}
 
 function attackHandler() {
   attackMonster("ATTACK");
@@ -18,7 +24,7 @@ function strongAttackHandler() {
   attackMonster("STRONG_ATTACK");
 }
 
-adjustHealthBars(chosenMaxLife);
+
 
 function endRound() {
   const initialPlayerHealth = currentPlayerHealth;
@@ -35,10 +41,13 @@ function endRound() {
 
   if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
     alert("You won");
+    reset()
   } else if (currentPlayerHealth <= 0 && currentMonsterHealth > 0) {
     alert("You lose");
+    reset()
   } else if (currentPlayerHealth <= 0 && currentMonsterHealth <= 0) {
     alert("Draw");
+    reset()
   }
 }
 
